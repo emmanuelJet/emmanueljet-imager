@@ -1,6 +1,6 @@
 "use client";
 
-import { Upload, ImageIcon, FileImage } from "lucide-react";
+import { Upload } from "lucide-react";
 import { useState, useCallback } from "react";
 import { cn } from "@/lib/utils";
 

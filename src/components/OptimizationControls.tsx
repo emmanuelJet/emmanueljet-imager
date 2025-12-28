@@ -25,7 +25,7 @@ export function OptimizationControls({
   onDownloadAll
 }: OptimizationControlsProps) {
   return (
-    <div className="sticky bottom-4 z-40 mt-8 p-4 rounded-2xl glass-panel border border-brand-purple/20 flex flex-wrap items-center justify-between gap-4 max-w-4xl mx-auto shadow-2xl shadow-brand-purple/10">
+    <div className="sticky bottom-4 z-40 mt-8 p-4 rounded-2xl border border-brand-purple/20 bg-brand-purple/5 dark:border-white/10 dark:bg-white/5 backdrop-blur-xl flex flex-wrap items-center justify-between gap-4 max-w-4xl mx-auto shadow-2xl shadow-brand-purple/5 dark:shadow-brand-purple/20">
 
       <div className="flex items-center gap-6 flex-1 min-w-[200px]">
         <div className="space-y-1">
@@ -33,7 +33,7 @@ export function OptimizationControls({
           <select
             value={currentSettings.format}
             onChange={(e) => onGlobalSettingsChange({ ...currentSettings, format: e.target.value as any })}
-            className="bg-black/20 border border-white/10 rounded-lg px-3 py-1.5 text-sm focus:border-brand-purple outline-none min-w-[120px]"
+            className="bg-brand-purple/5 dark:bg-white/5 border border-brand-purple/10 dark:border-white/10 rounded-lg px-3 py-1.5 text-sm focus:border-brand-purple outline-none min-w-[120px]"
           >
             <option value="original">Match Original</option>
             <option value="avif">Convert to AVIF</option>
@@ -54,7 +54,7 @@ export function OptimizationControls({
             max="100"
             value={currentSettings.quality}
             onChange={(e) => onGlobalSettingsChange({ ...currentSettings, quality: Number(e.target.value) })}
-            className="w-full accent-brand-orange h-1.5 bg-white/10 rounded-full appearance-none cursor-pointer"
+            className="w-full accent-brand-orange h-1.5 bg-brand-purple/10 dark:bg-white/10 rounded-full appearance-none cursor-pointer"
           />
         </div>
       </div>

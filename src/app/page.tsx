@@ -8,11 +8,12 @@ import { OptimizationControls } from "@/components/OptimizationControls";
 import { OptimizedFile, OutputFormat } from "@/types";
 import imageCompression from 'browser-image-compression';
 import JSZip from 'jszip';
+import { useToast } from "@/components/ui/Toast";
 
-// Simple ID generator if uuid not installed, but better to install uuid
 const generateId = () => Math.random().toString(36).substring(2) + Date.now().toString(36);
 
 export default function Home() {
+  const { toast } = useToast();
   const [files, setFiles] = useState<OptimizedFile[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
   const [globalSettings, setGlobalSettings] = useState<{ format: OutputFormat | 'original', quality: number }>({
@@ -80,7 +81,9 @@ export default function Home() {
 
       } catch (error) {
         console.error("Compression error:", error);
-        setFiles(prev => prev.map(f => f.id === file.id ? { ...f, status: 'error', error: 'Failed' } : f));
+        const errorMessage = error instanceof Error ? error.message : "Failed to compress image";
+        toast(`Error: ${errorMessage}`, "error");
+        setFiles(prev => prev.map(f => f.id === file.id ? { ...f, status: 'error', error: errorMessage } : f));
       }
     }));
 
@@ -114,7 +117,9 @@ export default function Home() {
       } : f));
     } catch (error) {
       console.error("Compression error:", error);
-      setFiles(prev => prev.map(f => f.id === id ? { ...f, status: 'error', error: 'Failed' } : f));
+      const errorMessage = error instanceof Error ? error.message : "Failed to compress image";
+      toast(`Error: ${errorMessage}`, "error");
+      setFiles(prev => prev.map(f => f.id === id ? { ...f, status: 'error', error: errorMessage } : f));
     }
   };
 
