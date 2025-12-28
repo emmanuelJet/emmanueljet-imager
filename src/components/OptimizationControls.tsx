@@ -1,7 +1,7 @@
 "use client";
 
 import { OutputFormat } from "@/types";
-import { Loader2, Zap } from "lucide-react";
+import { Download, Loader2, Zap } from "lucide-react";
 
 interface OptimizationControlsProps {
   onCompressAll: () => void;
@@ -9,6 +9,9 @@ interface OptimizationControlsProps {
   onGlobalSettingsChange: (settings: { format: OutputFormat | 'original', quality: number }) => void;
   currentSettings: { format: OutputFormat | 'original', quality: number };
   fileCount: number;
+  completedCount: number;
+  totalCount: number;
+  onDownloadAll: () => void;
 }
 
 export function OptimizationControls({
@@ -16,7 +19,10 @@ export function OptimizationControls({
   isProcessing,
   onGlobalSettingsChange,
   currentSettings,
-  fileCount
+  fileCount,
+  completedCount,
+  totalCount,
+  onDownloadAll
 }: OptimizationControlsProps) {
   return (
     <div className="sticky bottom-4 z-40 mt-8 p-4 rounded-2xl glass-panel border border-brand-purple/20 flex flex-wrap items-center justify-between gap-4 max-w-4xl mx-auto shadow-2xl shadow-brand-purple/10">
@@ -70,6 +76,16 @@ export function OptimizationControls({
           </>
         )}
       </button>
+
+      {completedCount > 0 && completedCount === totalCount && (
+        <button
+          onClick={onDownloadAll}
+          className="px-8 py-3 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 text-white font-bold shadow-lg shadow-green-500/25 hover:shadow-green-500/40 transition-all active:scale-95 flex items-center gap-2"
+        >
+          <Download className="size-5" />
+          Download ZIP ({completedCount})
+        </button>
+      )}
     </div>
   );
 }

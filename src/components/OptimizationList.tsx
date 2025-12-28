@@ -2,16 +2,17 @@
 
 import { OptimizedFile, OutputFormat } from "@/types";
 import { formatBytes, cn } from "@/lib/utils";
-import { X, Check, Loader2, Download, AlertCircle, FileImage, Settings2 } from "lucide-react";
+import { X, Check, Loader2, Download, AlertCircle, FileImage, Settings2, Zap } from "lucide-react";
 import { useState } from "react";
 
 interface OptimizationListProps {
   files: OptimizedFile[];
   onRemove: (id: string) => void;
   onUpdateOptions: (id: string, options: Partial<OptimizedFile['options']>) => void;
+  onCompress: (id: string) => void;
 }
 
-export function OptimizationList({ files, onRemove, onUpdateOptions }: OptimizationListProps) {
+export function OptimizationList({ files, onRemove, onUpdateOptions, onCompress }: OptimizationListProps) {
   if (files.length === 0) return null;
 
   return (
@@ -22,6 +23,7 @@ export function OptimizationList({ files, onRemove, onUpdateOptions }: Optimizat
           file={file}
           onRemove={onRemove}
           onUpdateOptions={onUpdateOptions}
+          onCompress={onCompress}
         />
       ))}
     </div>
@@ -31,11 +33,13 @@ export function OptimizationList({ files, onRemove, onUpdateOptions }: Optimizat
 function OptimizationItem({
   file,
   onRemove,
-  onUpdateOptions
+  onUpdateOptions,
+  onCompress
 }: {
   file: OptimizedFile;
   onRemove: (id: string) => void;
   onUpdateOptions: (id: string, options: Partial<OptimizedFile['options']>) => void;
+  onCompress: (id: string) => void;
 }) {
   const [showSettings, setShowSettings] = useState(false);
   const isDone = file.status === 'done';
@@ -104,16 +108,27 @@ function OptimizationItem({
               <Download className="size-5" />
             </a>
           ) : (
-            <button
-              onClick={() => setShowSettings(!showSettings)}
-              disabled={isProcessing}
-              className={cn(
-                "p-2 rounded-lg transition-colors",
-                showSettings ? "bg-brand-purple/20 text-brand-purple" : "hover:bg-white/5 text-foreground/60"
-              )}
-            >
-              <Settings2 className="size-5" />
-            </button>
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => onCompress(file.id)}
+                disabled={isProcessing}
+                className="p-2 rounded-lg bg-brand-purple/10 text-brand-purple hover:bg-brand-purple/20 transition-colors"
+                title="Compress"
+              >
+                {isProcessing ? <Loader2 className="size-5 animate-spin" /> : <Zap className="size-5 p-0.5" />}
+              </button>
+              <button
+                onClick={() => setShowSettings(!showSettings)}
+                disabled={isProcessing}
+                className={cn(
+                  "p-2 rounded-lg transition-colors",
+                  showSettings ? "bg-brand-purple/20 text-brand-purple" : "hover:bg-white/5 text-foreground/60"
+                )}
+                title="Settings"
+              >
+                <Settings2 className="size-5" />
+              </button>
+            </div>
           )}
 
           <button

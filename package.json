@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18",
-    "@types/uuid": "^10.0.0",
+    "browser-image-compression": "^2.0.2",
     "clsx": "^2.1.1",
     "jszip": "^3.10.1",
     "lucide-react": "^0.562.0",
@@ -19,10 +19,8 @@
     "postcss": "^8.5.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "sharp": "^0.34.5",
     "tailwind-merge": "^3.4.0",
-    "tailwindcss": "^4.1.18",
-    "uuid": "^13.0.0"
+    "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
     "@types/node": "^20",

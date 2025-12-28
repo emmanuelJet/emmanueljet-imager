@@ -36,13 +36,12 @@ export function DropZone({ onFilesDropped }: DropZoneProps) {
 
   /* Helper to check if file is supported */
   const isFileSupported = (file: File) => {
-    // Accept any file that the browser identifies as an image
-    // or has a common image extension if the type is missing/generic
+    // strict check for image mime type
     if (file.type.startsWith('image/')) return true;
 
-    const validExtensions = ['.png', '.jpg', '.jpeg', '.webp', '.avif', '.gif', '.bmp', '.tiff', '.ico', '.svg'];
-    const extension = '.' + file.name.split('.').pop()?.toLowerCase();
-    return validExtensions.includes(extension) || /\.(png|jpe?g|webp|avif|gif|bmp|tiff?|ico|svg)$/i.test(file.name);
+    // Fallback for some OS/Browser combos that might yield empty type
+    const validExtensions = /\.(png|jpe?g|webp|avif|gif|bmp|tiff?|ico|svg|heic|heif)$/i;
+    return validExtensions.test(file.name);
   };
 
   const handleDrop = useCallback((e: React.DragEvent) => {
@@ -83,7 +82,7 @@ export function DropZone({ onFilesDropped }: DropZoneProps) {
         type="file"
         multiple
         accept="image/*"
-        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-50"
         onChange={handleFileInput}
       />
 

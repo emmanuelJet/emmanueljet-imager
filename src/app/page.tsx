@@ -6,7 +6,8 @@ import { DropZone } from "@/components/DropZone";
 import { OptimizationList } from "@/components/OptimizationList";
 import { OptimizationControls } from "@/components/OptimizationControls";
 import { OptimizedFile, OutputFormat } from "@/types";
-import { v4 as uuidv4 } from "uuid"; // Need to install uuid or use simple random string
+import imageCompression from 'browser-image-compression';
+import JSZip from 'jszip';
 
 // Simple ID generator if uuid not installed, but better to install uuid
 const generateId = () => Math.random().toString(36).substring(2) + Date.now().toString(36);
@@ -51,7 +52,6 @@ export default function Home() {
   const handleCompressAll = async () => {
     setIsProcessing(true);
 
-    // Process sequentially or concurrent? Concurrent is faster.
     const pendingFiles = files.filter(f => f.status === 'pending' || f.status === 'error');
 
     // Mark as processing
@@ -59,18 +59,16 @@ export default function Home() {
 
     await Promise.all(pendingFiles.map(async (file) => {
       try {
-        const formData = new FormData();
-        formData.append('file', file.file);
-        formData.append('options', JSON.stringify(file.options));
+        const options = {
+          maxSizeMB: 100,
+          maxWidthOrHeight: undefined,
+          useWebWorker: true,
+          fileType: file.options.format === 'original' ? undefined : `image/${file.options.format}`,
+          initialQuality: file.options.quality / 100, // library uses 0-1
+        };
 
-        const res = await fetch('/api/optimize', {
-          method: 'POST',
-          body: formData,
-        });
-
-        if (!res.ok) throw new Error('Failed');
-
-        const blob = await res.blob();
+        const compressedFile = await imageCompression(file.file, options);
+        const blob = compressedFile; // It returns a Blob/File
         const url = URL.createObjectURL(blob);
 
         setFiles(prev => prev.map(f => f.id === file.id ? {
@@ -81,11 +79,72 @@ export default function Home() {
         } : f));
 
       } catch (error) {
+        console.error("Compression error:", error);
         setFiles(prev => prev.map(f => f.id === file.id ? { ...f, status: 'error', error: 'Failed' } : f));
       }
     }));
 
     setIsProcessing(false);
+  };
+
+  const handleCompressSingle = async (id: string) => {
+    const fileToCompress = files.find(f => f.id === id);
+    if (!fileToCompress) return;
+
+    setFiles(prev => prev.map(f => f.id === id ? { ...f, status: 'processing' } : f));
+
+    try {
+      const options = {
+        maxSizeMB: 100,
+        maxWidthOrHeight: undefined,
+        useWebWorker: true,
+        fileType: fileToCompress.options.format === 'original' ? undefined : `image/${fileToCompress.options.format}`,
+        initialQuality: fileToCompress.options.quality / 100,
+      };
+
+      const compressedFile = await imageCompression(fileToCompress.file, options);
+      const blob = compressedFile;
+      const url = URL.createObjectURL(blob);
+
+      setFiles(prev => prev.map(f => f.id === id ? {
+        ...f,
+        status: 'done',
+        optimizedSize: blob.size,
+        optimizedUrl: url
+      } : f));
+    } catch (error) {
+      console.error("Compression error:", error);
+      setFiles(prev => prev.map(f => f.id === id ? { ...f, status: 'error', error: 'Failed' } : f));
+    }
+  };
+
+  const handleDownloadAll = async () => {
+    const zip = new JSZip();
+    const completedFiles = files.filter(f => f.status === 'done');
+
+    // Add files to zip
+    for (const file of completedFiles) {
+      if (file.optimizedUrl) {
+        const response = await fetch(file.optimizedUrl);
+        const blob = await response.blob();
+        // Determine extension
+        const ext = file.options.format === 'original' ? file.file.name.split('.').pop() : file.options.format;
+        const originalName = file.file.name.substring(0, file.file.name.lastIndexOf('.'));
+        zip.file(`${originalName}.${ext}`, blob);
+      }
+    }
+
+    const content = await zip.generateAsync({ type: "blob" });
+    const url = URL.createObjectURL(content);
+
+    // Trigger download
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "optimized-images.zip";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -110,17 +169,21 @@ export default function Home() {
             files={files}
             onRemove={handleRemove}
             onUpdateOptions={handleUpdateOptions}
+            onCompress={handleCompressSingle}
           />
         </div>
       </main>
 
-      {files.length > 0 && (
+      {files.length > 1 && (
         <OptimizationControls
           onCompressAll={handleCompressAll}
           isProcessing={isProcessing}
           currentSettings={globalSettings}
           onGlobalSettingsChange={handleGlobalSettingsChange}
           fileCount={files.filter(f => f.status === 'pending').length}
+          completedCount={files.filter(f => f.status === 'done').length}
+          totalCount={files.length}
+          onDownloadAll={handleDownloadAll}
         />
       )}
     </div>
