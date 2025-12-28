@@ -18,7 +18,7 @@ export function Header() {
             <Zap className="size-5 text-white fill-white" />
           </div>
           <span className="text-xl font-bold bg-gradient-to-r from-brand-purple to-brand-orange bg-clip-text text-transparent">
-            Emmanuejet Imager
+            emmanueljet imager
           </span>
         </div>
 

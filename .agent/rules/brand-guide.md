@@ -32,6 +32,8 @@ The brand uses a modern, clean typographic system.
 ## Logo & Identity
 - **Clear Space**: Maintain a clear space of "X" around the logo, where X is the height of the brand icon.
 - **Prohibitions**: Do not alter proportions, change colors outside the palette, or distort the logomark.
+- **Brand Name**: Always write "emmanueljet" in lowercase. Never use Title Case (Emmanueljet) or Uppercase (EMMANUELJET).
+  - **Titles**: If the brand name appears in a title (e.g., "emmanueljet imager"), the entire title must be lowercase. Never use "emmanueljet Imager".
 
 ## Gradient Definitions
 - **Primary Gradient**:

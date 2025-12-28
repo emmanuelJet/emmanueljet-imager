@@ -14,7 +14,7 @@ const fira = Fira_Code({
 });
 
 export const metadata: Metadata = {
-  title: "Emmanuejet Imager | Premium Image Optimization",
+  title: "emmanueljet imager | premium image optimization",
   description: "High-performance AI-ready image compression and conversion tool.",
 };
 
