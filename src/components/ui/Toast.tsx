@@ -2,8 +2,8 @@
 
 import type { ReactNode } from 'react';
 import { createContext, useContext, useState, useCallback } from 'react';
-import { X, CheckCircle, AlertCircle, Info, AlertTriangle } from 'lucide-react';
 
+import { X, CheckCircle, AlertCircle, Info, AlertTriangle } from '@/components/ui/Icons';
 import { cn } from '@/lib/utils';
 
 type ToastType = 'success' | 'error' | 'info' | 'warning';
@@ -56,7 +56,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
 
 const ToastContainer = ({ toasts, onRemove }: { toasts: Toast[]; onRemove: (id: string) => void }) => {
   return (
-    <div className="fixed bottom-4 right-4 z-[100] flex flex-col gap-2 pointer-events-none p-4 max-w-sm w-full">
+    <div className='fixed bottom-4 right-4 z-[100] flex flex-col gap-2 pointer-events-none p-4 max-w-sm w-full'>
       {toasts.map((toast) => (
         <ToastItem key={toast.id} toast={toast} onRemove={onRemove} />
       ))}
@@ -66,10 +66,10 @@ const ToastContainer = ({ toasts, onRemove }: { toasts: Toast[]; onRemove: (id: 
 
 const ToastItem = ({ toast, onRemove }: { toast: Toast; onRemove: (id: string) => void }) => {
   const icons = {
-    success: <CheckCircle className="size-5 text-green-400" />,
-    error: <AlertCircle className="size-5 text-red-400" />,
-    warning: <AlertTriangle className="size-5 text-brand-orange" />,
-    info: <Info className="size-5 text-blue-400" />,
+    success: <CheckCircle className='size-5 text-green-400' />,
+    error: <AlertCircle className='size-5 text-red-400' />,
+    warning: <AlertTriangle className='size-5 text-brand-orange' />,
+    info: <Info className='size-5 text-blue-400' />,
   };
 
   const bgColors = {
@@ -87,13 +87,13 @@ const ToastItem = ({ toast, onRemove }: { toast: Toast; onRemove: (id: string) =
         'glass-panel' // Use existing glass utility if available, or just fallback
       )}
     >
-      <div className="mt-0.5 shrink-0">{icons[toast.type]}</div>
-      <p className="text-sm font-medium text-foreground/90 flex-1">{toast.message}</p>
+      <div className='mt-0.5 shrink-0'>{icons[toast.type]}</div>
+      <p className='text-sm font-medium text-foreground/90 flex-1'>{toast.message}</p>
       <button
         onClick={() => onRemove(toast.id)}
-        className="shrink-0 p-1 rounded-full hover:bg-white/10 text-foreground/50 hover:text-foreground transition-colors"
+        className='shrink-0 p-1 rounded-full hover:bg-white/10 text-foreground/50 hover:text-foreground transition-colors'
       >
-        <X className="size-4" />
+        <X className='size-4' />
       </button>
     </div>
   );

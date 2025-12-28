@@ -1,8 +1,8 @@
 'use client';
 
-import { Upload } from 'lucide-react';
 import { useState, useCallback } from 'react';
 
+import { Upload } from '@/components/ui/Icons';
 import { cn } from '@/lib/utils';
 
 interface DropZoneProps {

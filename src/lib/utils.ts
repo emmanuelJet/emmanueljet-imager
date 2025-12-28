@@ -1,8 +1,6 @@
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-export const cn = (...inputs: ClassValue[]) => {
-  return twMerge(clsx(inputs));
+export const cn = (...inputs: (string | undefined | null | false)[]) => {
+  const classes = inputs.filter(Boolean).join(' ').trim().split(/\s+/);
+  return [...new Set(classes)].join(' ');
 };
 
 export const formatBytes = (bytes: number, decimals = 2) => {

@@ -1,7 +1,6 @@
 'use client';
 
-import { Download, Loader2, Zap } from 'lucide-react';
-
+import { Download, Loader2, Zap } from '@/components/ui/Icons';
 import type { OutputFormat } from '@/types';
 
 interface OptimizationControlsProps {

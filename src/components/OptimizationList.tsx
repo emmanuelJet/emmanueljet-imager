@@ -1,9 +1,9 @@
 'use client';
 
-import { X, Loader2, Download, AlertCircle, Settings2, Zap } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
 
+import { X, Loader2, Download, AlertCircle, Settings2, Zap } from '@/components/ui/Icons';
 import { formatBytes, cn } from '@/lib/utils';
 import type { OptimizedFile, OutputFormat } from '@/types';
 

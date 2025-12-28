@@ -14,6 +14,7 @@ const eslintConfig = defineConfig([
     'next-env.d.ts',
   ]),
   {
+    files: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
     rules: {
       // Type Safety
       '@typescript-eslint/consistent-type-imports': 'error',
@@ -46,6 +47,7 @@ const eslintConfig = defineConfig([
 
       // Code Style
       'quotes': ['error', 'single', { 'avoidEscape': true, 'allowTemplateLiterals': true }],
+      'jsx-quotes': ['error', 'prefer-single'],
       'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
       'no-console': 'error',
       'no-warning-comments': ['error', { 'terms': ['todo', 'fixme'], 'location': 'anywhere' }],

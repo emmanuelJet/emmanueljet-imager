@@ -39,7 +39,7 @@ const RootLayout = ({
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={`${inter.variable} ${fira.variable} antialiased`}>
-        <ThemeProvider attribute='class' defaultTheme='dark' enableSystem>
+        <ThemeProvider defaultTheme='dark'>
           <ToastProvider>
             {children}
           </ToastProvider>

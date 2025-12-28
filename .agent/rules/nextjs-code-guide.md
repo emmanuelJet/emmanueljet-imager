@@ -23,6 +23,7 @@ This document defines the strict technical constraints for the Next.js 16 worksp
   - Sort imports: Built-in > External > Internal (@/).
   - Use `import type` for all interfaces/types.
 - **Strings:** Use Single Quotes (`'`) generally. Use Backticks (`` ` ``) for template literals.
+  -JSX Attributes: STRICTLY use Single Quotes.
 - **React:**
   - No `React.FC` types (they are deprecated/unnecessary).
   - No `defaultProps` (use default arguments in the function signature).
