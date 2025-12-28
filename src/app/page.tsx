@@ -1,18 +1,19 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Header } from "@/components/Header";
-import { DropZone } from "@/components/DropZone";
-import { OptimizationList } from "@/components/OptimizationList";
-import { OptimizationControls } from "@/components/OptimizationControls";
-import { OptimizedFile, OutputFormat } from "@/types";
-import imageCompression from 'browser-image-compression';
 import JSZip from 'jszip';
-import { useToast } from "@/components/ui/Toast";
+import { useState } from 'react';
+import imageCompression from 'browser-image-compression';
+
+import { Header } from '@/components/Header';
+import { DropZone } from '@/components/DropZone';
+import { OptimizationList } from '@/components/OptimizationList';
+import { OptimizationControls } from '@/components/OptimizationControls';
+import type { OptimizedFile, OutputFormat } from '@/types';
+import { useToast } from '@/components/ui/Toast';
 
 const generateId = () => Math.random().toString(36).substring(2) + Date.now().toString(36);
 
-export default function Home() {
+const Home = () => {
   const { toast } = useToast();
   const [files, setFiles] = useState<OptimizedFile[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -80,9 +81,9 @@ export default function Home() {
         } : f));
 
       } catch (error) {
-        console.error("Compression error:", error);
-        const errorMessage = error instanceof Error ? error.message : "Failed to compress image";
-        toast(`Error: ${errorMessage}`, "error");
+        // console.error('Compression error:', error);
+        const errorMessage = error instanceof Error ? error.message : 'Failed to compress image';
+        toast(`Error: ${errorMessage}`, 'error');
         setFiles(prev => prev.map(f => f.id === file.id ? { ...f, status: 'error', error: errorMessage } : f));
       }
     }));
@@ -116,9 +117,9 @@ export default function Home() {
         optimizedUrl: url
       } : f));
     } catch (error) {
-      console.error("Compression error:", error);
-      const errorMessage = error instanceof Error ? error.message : "Failed to compress image";
-      toast(`Error: ${errorMessage}`, "error");
+      // console.error('Compression error:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Failed to compress image';
+      toast(`Error: ${errorMessage}`, 'error');
       setFiles(prev => prev.map(f => f.id === id ? { ...f, status: 'error', error: errorMessage } : f));
     }
   };
@@ -139,13 +140,13 @@ export default function Home() {
       }
     }
 
-    const content = await zip.generateAsync({ type: "blob" });
+    const content = await zip.generateAsync({ type: 'blob' });
     const url = URL.createObjectURL(content);
 
     // Trigger download
-    const a = document.createElement("a");
+    const a = document.createElement('a');
     a.href = url;
-    a.download = "optimized-images.zip";
+    a.download = 'optimized-images.zip';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -153,15 +154,15 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground pb-32">
+    <div className='min-h-screen bg-background text-foreground pb-32'>
       <Header />
 
-      <main className="container mx-auto px-4 pt-24 max-w-5xl">
-        <div className="text-center mb-12 space-y-4">
-          <h1 className="text-5xl md:text-6xl font-bold leading-tight bg-gradient-to-r from-brand-purple to-brand-orange bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient pb-4">
+      <main className='container mx-auto px-4 pt-24 max-w-5xl'>
+        <div className='text-center mb-12 space-y-4'>
+          <h1 className='text-5xl md:text-6xl font-bold leading-tight bg-gradient-to-r from-brand-purple to-brand-orange bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient pb-4'>
             Optimize Images Faster
           </h1>
-          <p className="text-xl text-foreground/60 max-w-2xl mx-auto">
+          <p className='text-xl text-foreground/60 max-w-2xl mx-auto'>
             Reduce file size by up to 90% without losing quality.
             Supports AVIF, WebP, PNG, and JPEG.
           </p>
@@ -169,7 +170,7 @@ export default function Home() {
 
         <DropZone onFilesDropped={handleFilesDropped} />
 
-        <div className="mt-12">
+        <div className='mt-12'>
           <OptimizationList
             files={files}
             onRemove={handleRemove}
@@ -193,4 +194,5 @@ export default function Home() {
       )}
     </div>
   );
-}
+};
+export default Home;
