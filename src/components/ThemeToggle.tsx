@@ -1,6 +1,6 @@
 'use client';
 
-import { useTheme } from '@/components/ThemeProvider';
+import { useTheme } from '@/hooks/useTheme';
 import { Moon, Sun } from '@/components/ui/Icons';
 
 const ThemeToggle = () => {

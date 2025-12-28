@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter, Fira_Code } from 'next/font/google';
 
-import './globals.css';
-import { ThemeProvider } from '@/components/ThemeProvider';
-import { ToastProvider } from '@/components/ui/Toast';
+import '@/styles/globals.css';
+import { AppProvider } from '@/providers/AppProvider';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -39,11 +38,9 @@ const RootLayout = ({
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={`${inter.variable} ${fira.variable} antialiased`}>
-        <ThemeProvider defaultTheme='dark'>
-          <ToastProvider>
-            {children}
-          </ToastProvider>
-        </ThemeProvider>
+        <AppProvider>
+          {children}
+        </AppProvider>
       </body>
     </html>
   );

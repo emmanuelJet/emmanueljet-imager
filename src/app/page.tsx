@@ -9,7 +9,7 @@ import { DropZone } from '@/components/DropZone';
 import { OptimizationList } from '@/components/OptimizationList';
 import { OptimizationControls } from '@/components/OptimizationControls';
 import type { OptimizedFile, OutputFormat } from '@/types';
-import { useToast } from '@/components/ui/Toast';
+import { useToast } from '@/hooks/useToast';
 
 const generateId = () => Math.random().toString(36).substring(2) + Date.now().toString(36);
 
