@@ -94,7 +94,7 @@ export default function Home() {
 
       <main className="container mx-auto px-4 pt-24 max-w-5xl">
         <div className="text-center mb-12 space-y-4">
-          <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-brand-blue via-brand-purple to-brand-blue bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
+          <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-brand-purple to-brand-orange bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
             Optimize Images Faster
           </h1>
           <p className="text-xl text-foreground/60 max-w-2xl mx-auto">

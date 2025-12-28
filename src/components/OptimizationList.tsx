@@ -45,7 +45,7 @@ function OptimizationItem({
     : 0;
 
   return (
-    <div className="group relative bg-brand-surface border border-white/5 rounded-2xl p-4 transition-all hover:border-brand-blue/30">
+    <div className="group relative bg-brand-surface border border-white/5 rounded-2xl p-4 transition-all hover:border-brand-purple/30">
       <div className="flex items-center gap-4">
         {/* Preview */}
         <div className="relative size-16 rounded-xl overflow-hidden bg-black/20 shrink-0">
@@ -73,7 +73,7 @@ function OptimizationItem({
               </span>
             )}
             {file.status === 'done' && (
-              <span className="text-xs text-brand-blue font-mono">
+              <span className="text-xs text-brand-purple font-mono">
                 {file.options.format.toUpperCase()}
               </span>
             )}
@@ -109,7 +109,7 @@ function OptimizationItem({
               disabled={isProcessing}
               className={cn(
                 "p-2 rounded-lg transition-colors",
-                showSettings ? "bg-brand-blue/20 text-brand-blue" : "hover:bg-white/5 text-foreground/60"
+                showSettings ? "bg-brand-purple/20 text-brand-purple" : "hover:bg-white/5 text-foreground/60"
               )}
             >
               <Settings2 className="size-5" />
@@ -137,9 +137,9 @@ function OptimizationItem({
               max="100"
               value={file.options.quality}
               onChange={(e) => onUpdateOptions(file.id, { quality: Number(e.target.value) })}
-              className="w-full accent-brand-blue"
+              className="w-full accent-brand-orange"
             />
-            <div className="text-right text-xs text-brand-blue font-mono">{file.options.quality}%</div>
+            <div className="text-right text-xs text-brand-purple font-mono">{file.options.quality}%</div>
           </div>
 
           <div className="space-y-2">
@@ -147,7 +147,7 @@ function OptimizationItem({
             <select
               value={file.options.format}
               onChange={(e) => onUpdateOptions(file.id, { format: e.target.value as OutputFormat | 'original' })}
-              className="w-full bg-black/20 border border-white/10 rounded-lg px-2 py-1 text-sm focus:border-brand-blue outline-none"
+              className="w-full bg-black/20 border border-white/10 rounded-lg px-2 py-1 text-sm focus:border-brand-purple outline-none"
             >
               <option value="original">Original</option>
               <option value="avif">AVIF (Best)</option>
@@ -161,8 +161,8 @@ function OptimizationItem({
 
       {/* Progress Bar */}
       {isProcessing && (
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-brand-blue/20 rounded-b-2xl overflow-hidden">
-          <div className="h-full bg-brand-blue animate-progress-indeterminate" />
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-brand-purple/20 rounded-b-2xl overflow-hidden">
+          <div className="h-full bg-brand-purple animate-progress-indeterminate" />
         </div>
       )}
     </div>

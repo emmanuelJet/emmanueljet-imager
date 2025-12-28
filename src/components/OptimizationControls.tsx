@@ -19,7 +19,7 @@ export function OptimizationControls({
   fileCount
 }: OptimizationControlsProps) {
   return (
-    <div className="sticky bottom-4 z-40 mt-8 p-4 rounded-2xl glass-panel border border-brand-blue/20 flex flex-wrap items-center justify-between gap-4 max-w-4xl mx-auto shadow-2xl shadow-brand-blue/10">
+    <div className="sticky bottom-4 z-40 mt-8 p-4 rounded-2xl glass-panel border border-brand-purple/20 flex flex-wrap items-center justify-between gap-4 max-w-4xl mx-auto shadow-2xl shadow-brand-purple/10">
 
       <div className="flex items-center gap-6 flex-1 min-w-[200px]">
         <div className="space-y-1">
@@ -27,7 +27,7 @@ export function OptimizationControls({
           <select
             value={currentSettings.format}
             onChange={(e) => onGlobalSettingsChange({ ...currentSettings, format: e.target.value as any })}
-            className="bg-black/20 border border-white/10 rounded-lg px-3 py-1.5 text-sm focus:border-brand-blue outline-none min-w-[120px]"
+            className="bg-black/20 border border-white/10 rounded-lg px-3 py-1.5 text-sm focus:border-brand-purple outline-none min-w-[120px]"
           >
             <option value="original">Match Original</option>
             <option value="avif">Convert to AVIF</option>
@@ -40,7 +40,7 @@ export function OptimizationControls({
         <div className="space-y-1 flex-1 max-w-[200px]">
           <label className="text-xs font-medium text-foreground/60 flex justify-between">
             <span>Global Quality</span>
-            <span className="text-brand-blue">{currentSettings.quality}%</span>
+            <span className="text-brand-purple">{currentSettings.quality}%</span>
           </label>
           <input
             type="range"
@@ -48,7 +48,7 @@ export function OptimizationControls({
             max="100"
             value={currentSettings.quality}
             onChange={(e) => onGlobalSettingsChange({ ...currentSettings, quality: Number(e.target.value) })}
-            className="w-full accent-brand-blue h-1.5 bg-white/10 rounded-full appearance-none cursor-pointer"
+            className="w-full accent-brand-orange h-1.5 bg-white/10 rounded-full appearance-none cursor-pointer"
           />
         </div>
       </div>
@@ -56,7 +56,7 @@ export function OptimizationControls({
       <button
         onClick={onCompressAll}
         disabled={isProcessing || fileCount === 0}
-        className="px-8 py-3 rounded-xl bg-gradient-to-r from-brand-blue to-brand-purple text-white font-bold shadow-lg shadow-brand-blue/25 hover:shadow-brand-blue/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-95 flex items-center gap-2"
+        className="px-8 py-3 rounded-xl bg-gradient-to-br from-brand-purple to-brand-orange text-white font-bold shadow-lg shadow-brand-purple/25 hover:shadow-brand-purple/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-95 flex items-center gap-2"
       >
         {isProcessing ? (
           <>

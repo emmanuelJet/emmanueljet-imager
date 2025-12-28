@@ -72,10 +72,11 @@ export function DropZone({ onFilesDropped }: DropZoneProps) {
       onDrop={handleDrop}
       className={cn(
         "relative group cursor-pointer transition-all duration-300 ease-out",
-        "h-64 rounded-3xl border-2 border-dashed border-white/10 bg-white/5",
+        "h-64 rounded-3xl border-2 border-dashed",
+        "border-brand-purple/20 bg-brand-purple/5 dark:border-white/10 dark:bg-white/5",
         "flex flex-col items-center justify-center gap-4",
-        "hover:border-brand-blue/50 hover:bg-brand-blue/5",
-        isDragging && "border-brand-blue bg-brand-blue/10 scale-[1.02]"
+        "hover:border-brand-purple/50 hover:bg-brand-purple/5",
+        isDragging && "border-brand-purple bg-brand-purple/10 scale-[1.02]"
       )}
     >
       <input
@@ -87,11 +88,11 @@ export function DropZone({ onFilesDropped }: DropZoneProps) {
       />
 
       <div className={cn(
-        "p-4 rounded-full bg-brand-surface border border-white/10 transition-transform duration-300",
+        "p-4 rounded-full bg-brand-surface border border-brand-purple/10 dark:border-white/10 transition-transform duration-300",
         "group-hover:scale-110",
         isDragging && "scale-125"
       )}>
-        <Upload className="size-8 text-brand-blue" />
+        <Upload className="size-8 text-brand-purple" />
       </div>
 
       <div className="text-center space-y-1">
@@ -103,7 +104,7 @@ export function DropZone({ onFilesDropped }: DropZoneProps) {
         </p>
       </div>
 
-      <div className="absolute inset-0 -z-10 blur-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-brand-blue/20 rounded-3xl" />
+      <div className="absolute inset-0 -z-10 blur-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-brand-purple/20 rounded-3xl" />
     </div>
   );
 }
