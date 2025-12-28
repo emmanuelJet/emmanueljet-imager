@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function NotFound() {
   return (
@@ -9,7 +10,13 @@ export default function NotFound() {
 
       <div className="glass-panel p-8 md:p-12 rounded-2xl max-w-md w-full text-center flex flex-col items-center gap-6 border border-white/10">
         <div className="size-16 rounded-2xl flex items-center justify-center">
-          <img src="/brand/emmanueljet-logomark.svg" alt="emmanueljet logo" className="size-16" />
+          <Image
+            src="/brand/emmanueljet-logomark.svg"
+            alt="emmanueljet logo"
+            width={64}
+            height={64}
+            className="size-16"
+          />
         </div>
 
         <div className="space-y-2">
@@ -18,7 +25,7 @@ export default function NotFound() {
           </h1>
           <h2 className="text-2xl font-bold">Page Not Found</h2>
           <p className="text-muted-foreground text-sm md:text-base">
-            The page you are looking for doesn't exist or has been moved to another dimension.
+            The page you are looking for doesn&apos;t exist or has been moved to another dimension.
           </p>
         </div>
 

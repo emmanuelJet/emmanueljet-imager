@@ -3,6 +3,7 @@
 import { OptimizedFile, OutputFormat } from "@/types";
 import { formatBytes, cn } from "@/lib/utils";
 import { X, Loader2, Download, AlertCircle, Settings2, Zap } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 
 interface OptimizationListProps {
@@ -53,10 +54,12 @@ function OptimizationItem({
       <div className="flex items-center gap-4">
         {/* Preview */}
         <div className="relative size-16 rounded-xl overflow-hidden bg-brand-purple/10 dark:bg-white/10 shrink-0 border border-brand-purple/10 dark:border-transparent">
-          <img
+          <Image
             src={file.preview}
             alt={file.file.name}
-            className="w-full h-full object-cover"
+            fill
+            className="size-full object-cover"
+            unoptimized
           />
           {file.status === 'error' && (
             <div className="absolute inset-0 flex items-center justify-center bg-red-500/50">

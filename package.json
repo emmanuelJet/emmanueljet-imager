@@ -1,12 +1,38 @@
 {
   "name": "emmanuejet-imager",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "license": "AGPL-3.0",
+  "description": "High-performance image compression and conversion tool.",
+  "author": "Emmanuel Joseph <hello@emmanueljet.com> (https://emmanueljet.com)",
+  "homepage": "https://imager.emmanueljet.com",
+  "keywords": [
+    "emmanueljet",
+    "image-optimizer",
+    "image-optimiser",
+    "image-optimization",
+    "image-optimisation",
+    "compression-tool",
+    "github-pages",
+    "compression",
+    "antigravity",
+    "nextjs",
+    "react",
+    "pwa"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emmanuelJet/emmanueljet-imager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/emmanuelJet/emmanueljet-imager/issues/new?title=[Bug]%20TITLE_HERE&body=**Describe%20the%20bug%3A**%0A%0A**Steps%20to%20reproduce%3A**%0A%0A**Expected%20behavior%3A**%0A%0A**Screenshots%20(if%20applicable)%3A**%0A%0A**Additional%20context%3A**%0A%0A&labels=bug&assignees=emmanuelJet",
+    "email": "hello@emmanueljet.com"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "prepare": "husky"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18",
@@ -28,6 +54,23 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
+    "husky": "^9.1.7",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": "22",
+    "npm": "11"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

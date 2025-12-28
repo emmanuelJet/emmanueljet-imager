@@ -32,7 +32,7 @@ export function OptimizationControls({
           <label className="text-xs font-medium text-foreground/60 block">Global Format</label>
           <select
             value={currentSettings.format}
-            onChange={(e) => onGlobalSettingsChange({ ...currentSettings, format: e.target.value as any })}
+            onChange={(e) => onGlobalSettingsChange({ ...currentSettings, format: e.target.value as OutputFormat | 'original' })}
             className="bg-brand-purple/5 dark:bg-white/5 border border-brand-purple/10 dark:border-white/10 rounded-lg px-3 py-1.5 text-sm focus:border-brand-purple outline-none min-w-[120px]"
           >
             <option value="original">Match Original</option>
