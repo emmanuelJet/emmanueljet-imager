@@ -3,7 +3,7 @@
 import { useState, useCallback } from 'react';
 
 import { Upload } from '@/components/ui/Icons';
-import { cn } from '@/lib/utils';
+import { cn } from '@/utilities';
 
 interface DropZoneProps {
   onFilesDropped: (files: File[]) => void;

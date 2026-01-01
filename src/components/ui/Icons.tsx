@@ -1,6 +1,6 @@
 import type { SVGProps } from 'react';
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/utilities';
 
 interface IconProps extends SVGProps<SVGSVGElement> {
   className?: string;

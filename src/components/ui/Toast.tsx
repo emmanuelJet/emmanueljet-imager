@@ -3,7 +3,7 @@
 
 
 import { X, CheckCircle, AlertCircle, Info, AlertTriangle } from '@/components/ui/Icons';
-import { cn } from '@/lib/utils';
+import { cn } from '@/utilities';
 
 // Toast types needed for props
 interface Toast {

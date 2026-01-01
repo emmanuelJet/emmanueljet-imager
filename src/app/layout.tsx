@@ -3,6 +3,9 @@ import { Inter, Fira_Code } from 'next/font/google';
 
 import '@/styles/globals.css';
 import { AppProvider } from '@/providers/AppProvider';
+import { getHomePageMetadata, getHomePageSchema } from '@/utilities';
+
+export const metadata: Metadata = getHomePageMetadata();
 
 const inter = Inter({
   subsets: ['latin'],
@@ -14,21 +17,7 @@ const fira = Fira_Code({
   variable: '--font-mono',
 });
 
-export const metadata: Metadata = {
-  title: 'emmanueljet imager | premium image optimization',
-  description: 'High-performance AI-ready image compression and conversion tool.',
-  icons: {
-    icon: [
-      { url: '/icons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/icons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
-    ],
-    apple: [
-      { url: '/icons/apple-touch-icon.png' },
-    ],
-  },
-};
+const homePageSchema = getHomePageSchema();
 
 const RootLayout = ({
   children,
@@ -37,6 +26,12 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang='en' suppressHydrationWarning>
+      <head>
+        <script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageSchema) }}
+        />
+      </head>
       <body className={`${inter.variable} ${fira.variable} antialiased`}>
         <AppProvider>
           {children}
@@ -45,4 +40,5 @@ const RootLayout = ({
     </html>
   );
 };
+
 export default RootLayout;
