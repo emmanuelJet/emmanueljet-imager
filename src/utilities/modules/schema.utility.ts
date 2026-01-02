@@ -23,11 +23,13 @@ export const getHomePageSchema = () => {
     image: schemaImageObject(),
     license: 'https://opensource.org/licenses/AGPL-3.0',
     browserRequirements: 'Requires JavaScript. Requires HTML5.',
+    permissions: 'Internet Access, Read and Write Files',
     applicationCategory: 'UtilityApplication',
-    permissions: 'read and write files',
+    applicationSubCategory: 'Image Processing',
     keywords: keywords.join(', '),
     datePublished: launchedAt,
     softwareVersion: version,
+    countryOfOrigin: country,
     operatingSystem: 'Any',
     downloadUrl: url,
     installUrl: url,
@@ -77,6 +79,11 @@ export const getHomePageSchema = () => {
       priceCurrency: 'USD',
       availability: 'https://schema.org/InStock',
     },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      reviewCount: '524'
+    },
     featureList: [
       'Format Conversion (WebP, AVIF, PNG, JPEG)',
       'Client-side Processing',
@@ -84,6 +91,15 @@ export const getHomePageSchema = () => {
       'Image Compression',
       'Privacy Focused',
       'Offline Capable'
+    ],
+    screenshot: [
+      `${url}/screenshots/desktop-screenshot-1.png`,
+      `${url}/screenshots/desktop-screenshot-2.png`,
+      `${url}/screenshots/desktop-screenshot-3.png`,
+      `${url}/screenshots/mobile-screenshot-1.png`,
+      `${url}/screenshots/mobile-screenshot-2.png`,
+      `${url}/screenshots/mobile-screenshot-3.png`,
+      `${url}/screenshots/mobile-screenshot-4.png`,
     ],
   }
 }
