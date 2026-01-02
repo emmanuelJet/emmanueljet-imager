@@ -5,6 +5,7 @@ import { useState } from 'react';
 import imageCompression from 'browser-image-compression';
 
 import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
 import { DropZone } from '@/components/DropZone';
 import { OptimizationList } from '@/components/OptimizationList';
 import { OptimizationControls } from '@/components/OptimizationControls';
@@ -154,10 +155,10 @@ const Home = () => {
   };
 
   return (
-    <div className='min-h-screen bg-background text-foreground pb-32'>
+    <div className='flex flex-col min-h-screen bg-background text-foreground'>
       <Header />
 
-      <main className='container mx-auto px-4 pt-24 max-w-5xl'>
+      <main className='flex-1 container mx-auto px-4 pt-24 max-w-5xl'>
         <div className='text-center mb-12 space-y-4'>
           <h1 className='text-5xl md:text-6xl font-bold leading-tight bg-gradient-to-r from-brand-purple to-brand-orange bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient pb-4'>
             Optimize Images Faster
@@ -192,6 +193,8 @@ const Home = () => {
           onDownloadAll={handleDownloadAll}
         />
       )}
+
+      <Footer />
     </div>
   );
 };
